@@ -1,0 +1,12 @@
+:root {
+    --main-white-color: #fff;
+    --main-dark-color:rgba(44, 44, 44, .15);
+
+    --dark-red: rgba(244, 16, 16, .5);
+    --dark-green: rgba(16, 155, 16, .5);
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 50rem;
+}

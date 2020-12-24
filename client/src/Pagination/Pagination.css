@@ -1,0 +1,21 @@
+.pagination {
+    display: flex;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.pagination__item {
+    
+}
+
+.pagination__item_active {
+    background-color: #444;
+}
+
+.pagination__link {
+    border: .1rem solid #444;
+    cursor: pointer;
+    margin: 0 1rem;
+    padding: .5rem .75rem;
+    text-decoration: none;
+}
