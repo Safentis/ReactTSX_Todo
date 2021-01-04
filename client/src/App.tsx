@@ -24,12 +24,12 @@ interface PaginationEntrie {
   end: number
 }
 
-const App: React.FunctionComponent = () => {
+const App: React.FunctionComponent = (props) => {
   const [entries, setEntries] = useState <Entrie[]> ([]);
   const [entriesChecked, setEntriesChecked] = useState <Entrie[]> ([]);
   const [pagination, setPagination] = useState <PaginationEntrie> ({ start: 0, end: 5 });
 
-  // Функция handleErrpor(err: any) получает в качетсве
+  // Функция handleError(err: any) получает в качетсве
   // аргумента объект ошибки и выводит в консоль 
   // данные о ней
   const handleError = (err: any): void => {
@@ -142,12 +142,14 @@ const App: React.FunctionComponent = () => {
   // и удаляет соответствующее представление
 
   const deleteHandle = (id: number): void => {
-    let cloneEntries: Entrie[], filterEntries: Entrie[];
+    let cloneEntries: Entrie[], filterEntries: Entrie[], filterCheckedEntries: Entrie[];
 
     cloneEntries = [...entries];
     filterEntries = cloneEntries.filter(item => item.id !== id);
+    filterCheckedEntries = cloneEntries.filter(item => item.id !== id && item.checked === true);
     
     setEntries(filterEntries);
+    setEntriesChecked(filterCheckedEntries);
     deleteEntrieFromServer(id);
   }
 

@@ -1,6 +1,10 @@
 import React from 'react';
 import './Entries.css';
 
+import { useRef } from 'react';
+import { Redirect, useLocation } from 'react-router-dom';
+import EntriesItem from './EntriesItem/EntriesItem';
+
 interface ObjectProps {
     entries: any[],
     pagination: {
@@ -12,16 +16,15 @@ interface ObjectProps {
 }
 
 const Entries: React.FunctionComponent <ObjectProps> = (props) => {
-    const { entries, pagination, onDelete, onChecked } = props;
-
+    const { pagination, entries, onDelete, onChecked } = props;
+    const listElementRef = useRef <HTMLUListElement> (null);
 
     const handleDelete = (e: React.MouseEvent) => {
         const target = e.target as HTMLButtonElement;
         const id: number = Number(target.dataset.int);
-
+        
         onDelete(id);
     }
-
 
     const handleChecked = (e: React.MouseEvent) => {
         const target = e.target as HTMLButtonElement;
@@ -30,34 +33,24 @@ const Entries: React.FunctionComponent <ObjectProps> = (props) => {
         onChecked(id);
     }
 
+    const location = useLocation();
+
     return (
-        <ul className="list">
-            {entries.map(({id, content, checked}, i) => {
+        <ul className="list" ref={listElementRef}>
+            {entries.map((item, i) => {
+                // if (listElementRef.current?.children.length === 1 && entries.length > 1) {
+                //     pagination.start -= 5;
+                //     pagination.end -= 5;
+                //     <Redirect to={{ pathname: "/entries/0", state: { from: location } }} />
+                // }
 
                 if (i >= pagination.start && i < pagination.end) {
+                    
                     return (
-                        <li className={`item list__item ${checked ? 'item_checked' : ''}`} key={id}>
-                            <p className={`item__content ${checked ? 'item__content_checked' : ''}`}>
-                                {content}
-                            </p>
-                            <div className="item__controls">
-                                <button className="button button__delete item__button" type="button" 
-                                    data-int={id} 
-                                    onClick={handleDelete}
-                                >
-                                    удалить
-                                </button>
-                                <button className={`button button__complite item__button ${checked ? 'button__complite_checked' : ''}`} type="button" 
-                                    data-int={id} 
-                                    data-complite={checked} 
-                                    onClick={handleChecked}
-                                >
-                                    выполненно
-                                </button>
-                            </div>
-                        </li>
+                        <EntriesItem key={i} item={item} handleDelete={handleDelete} handleChecked={handleChecked}/>
                     )
                 }
+                
             })}
         </ul>
     )

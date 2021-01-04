@@ -30,7 +30,7 @@ const Pagination: React.FunctionComponent <ObjectProps> = (props) => {
             <ul className="pagination">
                 {
                     entries.map((item, i) => {
-                        if (entries.length < 4) return;
+                        if (entries.length < 5) return;
                         if ((i % 5) === 0) {
                             let location: any = window.location.pathname.match(/\d/ig);
                             let page: number = Number(location?.join(''));

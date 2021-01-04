@@ -61,7 +61,7 @@ const Controls: React.FunctionComponent <ObjectProps> = (props) => {
                 <ul className="nav__list">
                     <Link className="button button-nav" to="/">Информация</Link>
                     <Link className="button button-nav" to="/entries/0" onClick={handlePagination}>Все задачи</Link>
-                    <Link className="button button-nav" to="/entries-checked/0">Выполненные задачи</Link>
+                    <Link className="button button-nav" to="/entries-checked/0" onClick={handlePagination}>Выполненные задачи</Link>
                 </ul>
             </nav>
         </header>
