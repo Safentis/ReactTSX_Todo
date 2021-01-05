@@ -249,7 +249,7 @@ const App: React.FunctionComponent = (props) => {
         <Route exact path="/">
           <Info />
         </Route>
-
+        
         {/* ENTRIES PAGE */}
         <Route path="/entries">
           <Entries onDelete={deleteHandle} onChecked={checkedHandle} pagination={pagination} entries={entries}/>

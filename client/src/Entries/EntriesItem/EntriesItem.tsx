@@ -1,6 +1,8 @@
 import React from 'react';
 import './EntriesItem.css';
 
+import Button from '../../Button/Button';
+
 interface ObjectProps {
     item: any
     handleDelete(e: React.MouseEvent): void,
@@ -18,19 +20,16 @@ const EntriesItem: React.FunctionComponent <ObjectProps> = (props) => {
                 {content}
             </p>
             <div className="item__controls">
-                <button className="button button__delete item__button" type="button" 
-                    data-int={id} 
-                    onClick={handleDelete}
+                <Button buttonClass="button__delete item__button" int={id} handle={handleDelete}>
+                    Удалить
+                </Button>
+                <Button buttonClass={`button button__complite item__button ${checked ? 'button__complite_checked' : ''}`} 
+                    int={id} 
+                    complite={checked} 
+                    handle={handleChecked}
                 >
-                    удалить
-                </button>
-                <button className={`button button__complite item__button ${checked ? 'button__complite_checked' : ''}`} type="button" 
-                    data-int={id} 
-                    data-complite={checked} 
-                    onClick={handleChecked}
-                >
-                    выполненно
-                </button>
+                    Выполненно
+                </Button>
             </div>
         </li>
     )
